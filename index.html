@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusFind | Find what matters</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/app.js" defer></script>
+
+  <style>
+    .hero-art {
+      position: relative !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      min-height: 280px;
+    }
+
+    .hero-art .backpack {
+      position: relative !important;
+      z-index: 1 !important;
+    }
+
+    .hero-art .phone {
+      position: absolute !important;
+      right: 15% !important;
+      top: 50% !important;
+      transform: translateY(-50%) rotate(8deg) !important;
+      z-index: 2 !important;
+    }
+
+    .hero-art .keyring {
+      position: absolute !important;
+      z-index: 3 !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">✦</span>
+      Campus<span>Find</span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+      ☰
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a class="active" href="#" data-tab="home" id="navHome">Home</a>
+      <a href="#" data-tab="reports" id="navReports">My Reports</a>
+      <a href="lost.html">Report Lost</a>
+      <a href="found.html">Report Found</a>
+    </nav>
+
+    <button class="button button-small button-light" id="darkModeToggle" title="Toggle Dark Mode">
+      🌙
+    </button>
+  </header>
+
+  <main>
+    <div id="homeView">
+
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow">
+            <span class="pulse"></span>
+            YOUR CAMPUS COMMUNITY
+          </span>
+
+          <h1>
+            Lost something?<br>
+            <span>Let's find it.</span>
+          </h1>
+
+          <p>
+            CampusFind brings students together to reunite lost
+            belongings with the people who miss them.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-dark" href="lost.html">
+              I lost something <span>↗️</span>
+            </a>
+
+            <a class="button button-light" href="found.html">
+              I found something <span>♡</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-label="Illustration of campus lost items">
+          <div class="backpack">
+            <div class="bag-handle"></div>
+            <div class="bag-pocket"></div>
+            <div class="bag-badge"></div>
+          </div>
+
+          <div class="phone">
+            <div class="phone-speaker"></div>
+
+            <div class="phone-screen">
+              <div class="phone-check">✓</div>
+              <b>Good news!</b>
+
+              <small>
+                Your item might<br>
+                be found nearby.
+              </small>
+
+              <div class="phone-pill"></div>
+            </div>
+          </div>
+
+          <div class="keyring">
+            <div class="key-circle"></div>
+            <div class="key-stem"></div>
+            <div class="key-tooth"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-row">
+        <div>
+          <strong id="statTotal">0</strong>
+          <span>Community reports</span>
+        </div>
+
+        <div>
+          <strong id="statFound">0</strong>
+          <span>Items found</span>
+        </div>
+
+        <div>
+          <strong id="statReturned">0</strong>
+          <span>Happy returns</span>
+        </div>
+
+        <div class="stat-message">
+          <span class="stat-emoji">💛</span>
+          <span>
+            Small acts of kindness<br>
+            make a big difference.
+          </span>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">THE COMMUNITY BOARD</span>
+            <h2>Recently reported</h2>
+            <p>
+              See what's missing and what has been found around campus.
+            </p>
+          </div>
+        </div>
+
+        <div class="search-panel">
+          <label class="search-box">
+            <span>⌕</span>
+            <input
+              id="searchInput"
+              type="search"
+              placeholder="Search items, descriptions, or locations...">
+          </label>
+
+          <select id="categoryFilter" aria-label="Filter by category">
+            <option value="">All categories</option>
+            <option>Electronics</option>
+            <option>Bags</option>
+            <option>Keys</option>
+            <option>Accessories</option>
+            <option>Books & Notes</option>
+            <option>Clothing</option>
+            <option>Other</option>
+          </select>
+
+          <select id="statusFilter" aria-label="Filter by status">
+            <option value="">All statuses</option>
+            <option value="Lost">Lost</option>
+            <option value="Found">Found</option>
+            <option value="Returned">Returned</option>
+            <option value="Claimed">Claimed</option>
+          </select>
+        </div>
+
+        <div class="filter-tabs" id="typeTabs">
+          <button class="filter-tab active" data-type="All">
+            All items <span id="allCount">0</span>
+          </button>
+
+          <button class="filter-tab" data-type="Lost">Lost items</button>
+          <button class="filter-tab" data-type="Found">Found items</button>
+          <button class="filter-tab" data-type="Returned">Returned</button>
+        </div>
+
+        <div class="items-grid" id="itemsGrid"></div>
+
+        <div class="empty-state hidden" id="emptyState">
+          <div>🔎</div>
+          <h3>No items found</h3>
+          <p>Try another search or clear your filters.</p>
+
+          <button class="button button-light" id="clearFilters">
+            Clear filters
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <div
+      id="reportsView"
+      class="hidden reports-page"
+      style="width:min(1120px,88%);margin:40px auto;">
+
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">YOUR ACTIVITY</span>
+          <h1>My reports<span class="text-purple">.</span></h1>
+          <p>
+            Manage your demo reports and follow each item's journey.
+          </p>
+        </div>
+
+        <div class="hero-actions">
+          <a class="button button-coral" href="lost.html">+ Lost item</a>
+          <a class="button button-green" href="found.html">+ Found item</a>
+        </div>
+      </div>
+
+      <div class="notice notice-purple">
+        <span>ℹ️</span>
+        <p>
+          <strong>Front-end demo:</strong>
+          reports are saved in this browser only.
+        </p>
+      </div>
+
+      <div class="report-summary" id="reportSummary"></div>
+      <div class="reports-list" id="reportsList"></div>
+
+      <div class="empty-state hidden" id="reportsEmpty">
+        <div>🗂️</div>
+        <h3>No reports yet</h3>
+        <p>Create your first report to see it here.</p>
+
+        <a class="button button-primary" href="lost.html">
+          Create a report
+        </a>
+      </div>
+
+      <div class="danger-zone">
+        <div>
+          <h3>Reset demo data</h3>
+          <p>Restore original sample reports.</p>
+        </div>
+
+        <button class="button button-light" id="resetDemo">
+          Reset demo data
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">✦</span>
+      Campus<span>Find</span>
+    </a>
+
+    <p>Made for campus. Powered by kindness.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Report a Found Item | CampusFind</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/storage.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            <span class="brand-mark">✦</span>
+            Campus<span>Find</span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menuToggle"
+            aria-label="Toggle navigation">
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="lost.html">Report Lost</a>
+            <a class="active" href="found.html">Report Found</a>
+        </nav>
+
+        <button
+            class="button button-small button-light"
+            id="darkModeToggle"
+            title="Toggle Dark Mode">
+            🌙
+        </button>
+    </header>
+
+    <main class="form-page">
+        <div class="form-intro">
+            <a class="back-link" href="index.html">
+                ← Back to community board
+            </a>
+
+            <span class="eyebrow">
+                YOU CAN MAKE SOMEONE'S DAY
+            </span>
+
+            <h1>
+                Report a <span class="text-green">found item.</span>
+            </h1>
+
+            <p>
+                Found something on campus?
+                Share a few details quickly.
+            </p>
+
+            <div class="notice notice-green">
+                <span>🌱</span>
+                <p>
+                    <strong>Good deed in progress.</strong>
+                    Keep the item safe.
+                </p>
+            </div>
+        </div>
+
+        <section class="form-card">
+            <div class="form-card-title">
+                <div class="step-number green-bg">01</div>
+                <div>
+                    <h2>Found item details</h2>
+                    <p>
+                        Share enough information for the owner to recognize it.
+                    </p>
+                </div>
+            </div>
+
+            <form id="reportForm" data-kind="Found" novalidate>
+                <div class="form-grid">
+
+                    <label class="field full">
+                        Item name
+                        <input
+                            name="title"
+                            required
+                            maxlength="80"
+                            placeholder="e.g. Blue student ID holder">
+                    </label>
+
+                    <label class="field">
+                        Category
+                        <select name="category" required>
+                            <option value="">Choose a category</option>
+                            <option>Electronics</option>
+                            <option>Bags</option>
+                            <option>Keys</option>
+                            <option>Accessories</option>
+                            <option>Books & Notes</option>
+                            <option>Clothing</option>
+                            <option>IDs & Cards</option>
+                            <option>Other</option>
+                        </select>
+                    </label>
+
+                    <label class="field">
+                        Date found
+                        <input name="date" type="date" required>
+                    </label>
+
+                    <label class="field full">
+                        Description
+                        <textarea
+                            name="description"
+                            rows="4"
+                            required
+                            maxlength="500"
+                            placeholder="Describe the item, but keep unique identifying details private."></textarea>
+                    </label>
+
+                    <!-- Ownership Verification -->
+                    <div class="field full form-section-label">
+                        <span class="step-number green-bg">🔐</span>
+                        <div>
+                            <h2>Ownership Verification</h2>
+                            <p>
+                                Add a question to help verify the real owner.
+                            </p>
+                        </div>
+                    </div>
+
+                    <label class="field full">
+                        Verification question
+                        <input
+                            type="text"
+                            name="verificationQuestion"
+                            required
+                            maxlength="200"
+                            placeholder="e.g. What keychain is attached to the bag?">
+
+                        <small style="color: var(--text-muted); display: block; margin-top: 4px;">
+                            Ask about a unique detail that is not visible in the photo or description.
+                        </small>
+                    </label>
+
+                    <label class="field full">
+                        Secret answer
+                        <input
+                            type="password"
+                            name="verificationAnswer"
+                            required
+                            maxlength="150"
+                            autocomplete="off"
+                            placeholder="Enter the correct answer">
+
+                        <small style="color: var(--text-muted); display: block; margin-top: 4px;">
+                            Keep this answer private. It should not appear in the public report.
+                        </small>
+                    </label>
+
+                    <!-- Item Photo -->
+                    <label class="field full">
+                        Item Photo
+                        <input
+                            type="file"
+                            name="image"
+                            id="itemImage"
+                            accept="image/png, image/jpeg, image/webp"
+                            required>
+
+                        <small style="color: var(--text-muted); display: block; margin-top: 4px;">
+                            Upload a clear photo (JPG, PNG, WEBP — max 2 MB).
+                        </small>
+
+                        <img
+                            id="imagePreview"
+                            alt="Item photo preview"
+                            hidden
+                            style="
+                                width: 100%;
+                                max-width: 320px;
+                                max-height: 250px;
+                                object-fit: contain;
+                                margin-top: 12px;
+                                border-radius: 12px;
+                            ">
+                    </label>
+
+                    <!-- Location and Contact -->
+                    <div class="field full form-section-label">
+                        <span class="step-number green-bg">02</span>
+                        <div>
+                            <h2>Where did you find it?</h2>
+                            <p>
+                                Share where the owner might be able to collect it.
+                            </p>
+                        </div>
+                    </div>
+
+                    <label class="field">
+                        Found location
+                        <input
+                            name="location"
+                            required
+                            maxlength="100"
+                            placeholder="e.g. Student center reception">
+                    </label>
+
+                    <label class="field">
+                        Your name
+                        <input
+                            name="contact"
+                            required
+                            maxlength="60"
+                            placeholder="Enter your name">
+                    </label>
+
+                    <label class="field full">
+                        Contact details
+                        <input
+                            name="contactInfo"
+                            required
+                            maxlength="100"
+                            placeholder="Email or preferred contact method">
+                    </label>
+
+                </div>
+
+                <div class="form-actions">
+                    <a class="button button-light" href="index.html">
+                        Cancel
+                    </a>
+
+                    <button class="button button-green" type="submit">
+                        Publish found report <span>→</span>
+                    </button>
+                </div>
+
+                <p
+                    class="form-message"
+                    id="formMessage"
+                    role="status"
+                    aria-live="polite">
+                </p>
+            </form>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <a class="brand" href="index.html">
+            <span class="brand-mark">✦</span>
+            Campus<span>Find</span>
+        </a>
+        <p>Made for campus. Powered by kindness.</p>
+    </footer>
+</body>
+
+</html>

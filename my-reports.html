@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Reports | CampusFind</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/storage.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="brand" href="index.html">
+            <span class="brand-mark">✦</span>
+            Campus<span>Find</span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="lost.html">Report Lost</a>
+            <a href="found.html">Report Found</a>
+            <a class="active" href="my-reports.html">My Reports</a>
+        </nav>
+
+    </header>
+
+
+    <main class="reports-page">
+        <div class="section-heading">
+
+            <div>
+                <span class="eyebrow">YOUR ACTIVITY</span>
+
+                <h1>
+                    My reports<span class="text-purple">.</span>
+                </h1>
+
+                <p>
+                    Manage your demo reports and follow each item's journey.
+                </p>
+            </div>
+
+            <div class="hero-actions">
+                <a class="button button-coral" href="lost.html">
+                    + Lost item
+                </a>
+
+                <a class="button button-green" href="found.html">
+                    + Found item
+                </a>
+            </div>
+
+        </div>
+
+
+        <div class="report-summary" id="reportSummary"></div>
+
+        <div class="reports-list" id="reportsList"></div>
+
+        <div class="empty-state hidden" id="reportsEmpty">
+            <div>🗂️</div>
+
+            <h3>No reports yet</h3>
+
+            <p>Create your first report to see it here.</p>
+
+            <a class="button button-primary" href="lost.html">
+                Create a report
+            </a>
+
+        </div>
+
+        <div class="danger-zone">
+
+            <div>
+                <h3>Reset demo data</h3>
+
+                <p>
+                    Restore the original sample reports.
+                    Your own locally created reports will be removed.
+                </p>
+            </div>
+
+            <button class="button button-light" id="resetDemo">
+                Reset demo data
+            </button>
+
+        </div>
+
+    </main>
+
+    <footer class="site-footer">
+
+        <a class="brand" href="index.html">
+            <span class="brand-mark">✦</span>
+            Campus<span>Find</span>
+        </a>
+
+        <p>Made for campus. Powered by kindness.</p>
+    </footer>
+
+</body>
+</html>
